@@ -1,12 +1,16 @@
 package org.ll.git.svc;
 
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-@Service @Slf4j
+@Service
+@Slf4j
 public class PullRequestServiceImpl {
 
     @Value("${github.api.url:https://api.github.com}") private String githubApiUrl;
@@ -14,7 +18,7 @@ public class PullRequestServiceImpl {
     @Value("${github.api.token}") private String token;
 
     public void createPullRequest(String repo, String baseBranch, String fromBranch,
-                                        String title, String body, String token) {
+                                        String title, String body) {
 
         String jsonBody = """
         {
